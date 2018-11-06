@@ -1,0 +1,6 @@
+framework module MSForm {
+  umbrella header "MSForm-umbrella.h"
+
+  export *
+  module * { export * }
+}

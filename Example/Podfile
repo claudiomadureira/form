@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MSForm_Example' do
+  pod 'MSForm', :path => '../'
+
+  target 'MSForm_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

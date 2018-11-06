@@ -1,0 +1,16 @@
+PODS:
+  - MSForm (0.1.0)
+
+DEPENDENCIES:
+  - MSForm (from `../`)
+
+EXTERNAL SOURCES:
+  MSForm:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MSForm: f61ea8d6604008097b9f021a5e362046cbeab6ce
+
+PODFILE CHECKSUM: 56c42bf1c63ab0a4711e9744ac02407847fcddeb
+
+COCOAPODS: 1.5.3
