@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,8 +20,176 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sexo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwE-10-b4b" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="131" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="sex"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_pickerType">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c4E-Aa-O0L" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="173.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="name"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CPF" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UjB-hQ-nDd" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="218.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="numberMask" value="###.###.###-##"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="cpf"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wUN-QA-HeH" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="263.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="email"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Telefone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MzW-Jf-tln" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="308.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="phone"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="numberMask" value="(##) # ####-####"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6b-Sx-oIv" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="353.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="password"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmar Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BSE-D5-xvg" customClass="MSTextField" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="398.5" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="passwordConfirm"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqO-aX-Dhr" customClass="MSTextView" customModule="MSForm">
+                                <rect key="frame" x="37.5" y="450" width="300" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ifL-3q-9cI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="observation"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="asdd"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="BSE-D5-xvg" firstAttribute="width" secondItem="A6b-Sx-oIv" secondAttribute="width" id="1JP-C8-H0A"/>
+                            <constraint firstItem="BSE-D5-xvg" firstAttribute="centerX" secondItem="A6b-Sx-oIv" secondAttribute="centerX" id="1eF-9l-twi"/>
+                            <constraint firstItem="c4E-Aa-O0L" firstAttribute="centerX" secondItem="UjB-hQ-nDd" secondAttribute="centerX" id="41K-Kw-4BM"/>
+                            <constraint firstItem="MzW-Jf-tln" firstAttribute="centerX" secondItem="wUN-QA-HeH" secondAttribute="centerX" id="7Ss-It-bc4"/>
+                            <constraint firstItem="TwE-10-b4b" firstAttribute="centerX" secondItem="c4E-Aa-O0L" secondAttribute="centerX" id="9KD-uj-qam"/>
+                            <constraint firstItem="c4E-Aa-O0L" firstAttribute="width" secondItem="UjB-hQ-nDd" secondAttribute="width" id="CgJ-d2-25S"/>
+                            <constraint firstItem="MzW-Jf-tln" firstAttribute="width" secondItem="wUN-QA-HeH" secondAttribute="width" id="DxC-EI-xaL"/>
+                            <constraint firstItem="c4E-Aa-O0L" firstAttribute="top" secondItem="TwE-10-b4b" secondAttribute="bottom" constant="12.5" id="JVF-PR-5BQ"/>
+                            <constraint firstItem="BSE-D5-xvg" firstAttribute="top" secondItem="A6b-Sx-oIv" secondAttribute="bottom" constant="15" id="PYT-8r-seH"/>
+                            <constraint firstItem="A6b-Sx-oIv" firstAttribute="width" secondItem="wUN-QA-HeH" secondAttribute="width" id="QSY-xo-aJK"/>
+                            <constraint firstItem="UjB-hQ-nDd" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" multiplier="0.7" id="Sdf-nv-ddY"/>
+                            <constraint firstItem="UjB-hQ-nDd" firstAttribute="top" secondItem="c4E-Aa-O0L" secondAttribute="bottom" constant="15" id="Sh1-h4-XzH"/>
+                            <constraint firstItem="MzW-Jf-tln" firstAttribute="top" secondItem="wUN-QA-HeH" secondAttribute="bottom" constant="15" id="X2g-5w-CKm"/>
+                            <constraint firstItem="wUN-QA-HeH" firstAttribute="top" secondItem="UjB-hQ-nDd" secondAttribute="bottom" constant="15" id="X5H-3v-Ir4"/>
+                            <constraint firstItem="A6b-Sx-oIv" firstAttribute="centerX" secondItem="wUN-QA-HeH" secondAttribute="centerX" id="YOK-SW-Eer"/>
+                            <constraint firstItem="eqO-aX-Dhr" firstAttribute="width" secondItem="BSE-D5-xvg" secondAttribute="width" id="ZiB-I1-7ja"/>
+                            <constraint firstItem="wUN-QA-HeH" firstAttribute="centerX" secondItem="UjB-hQ-nDd" secondAttribute="centerX" id="Zji-By-EXm"/>
+                            <constraint firstItem="eqO-aX-Dhr" firstAttribute="centerX" secondItem="BSE-D5-xvg" secondAttribute="centerX" id="Zly-o1-APr"/>
+                            <constraint firstItem="UjB-hQ-nDd" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="eyp-oh-hUo"/>
+                            <constraint firstItem="UjB-hQ-nDd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="n4N-mP-Bud"/>
+                            <constraint firstItem="TwE-10-b4b" firstAttribute="width" secondItem="c4E-Aa-O0L" secondAttribute="width" id="pjd-24-Uyp"/>
+                            <constraint firstItem="A6b-Sx-oIv" firstAttribute="top" secondItem="MzW-Jf-tln" secondAttribute="bottom" constant="15" id="reE-99-c4o"/>
+                            <constraint firstItem="eqO-aX-Dhr" firstAttribute="top" secondItem="BSE-D5-xvg" secondAttribute="bottom" constant="21.5" id="uYq-2a-dbL"/>
+                            <constraint firstItem="wUN-QA-HeH" firstAttribute="width" secondItem="UjB-hQ-nDd" secondAttribute="width" id="vu0-Xs-lai"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="fields" destination="TwE-10-b4b" collectionClass="NSMutableArray" id="kal-2A-2Q1"/>
+                        <outletCollection property="fields" destination="c4E-Aa-O0L" collectionClass="NSMutableArray" id="8L6-u9-Ugv"/>
+                        <outletCollection property="fields" destination="UjB-hQ-nDd" collectionClass="NSMutableArray" id="tJ1-wO-nNS"/>
+                        <outletCollection property="fields" destination="wUN-QA-HeH" collectionClass="NSMutableArray" id="NuX-9V-e6S"/>
+                        <outletCollection property="fields" destination="MzW-Jf-tln" collectionClass="NSMutableArray" id="Rvj-lm-jel"/>
+                        <outletCollection property="fields" destination="A6b-Sx-oIv" collectionClass="NSMutableArray" id="XNq-gb-t8p"/>
+                        <outletCollection property="fields" destination="BSE-D5-xvg" collectionClass="NSMutableArray" id="4Jj-Ph-TqK"/>
+                        <outletCollection property="fields" destination="eqO-aX-Dhr" collectionClass="NSMutableArray" id="tCB-jx-Yik"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
