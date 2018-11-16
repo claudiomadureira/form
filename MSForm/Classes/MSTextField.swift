@@ -16,7 +16,8 @@ public protocol MSTextFieldDelegate {
 }
 
 public enum MSTextFieldType: Int {
-    case standard = 0
+    case standard = -1
+    case capitalized = 0
     case email = 1
     case number = 2
     case password = 3
@@ -37,7 +38,7 @@ public class MSTextField: UITextField, UITextFieldDelegate {
         }
     }
     
-    var index: Int = 0
+    public var index: Int = 0
 
     @IBInspectable
     public var key: String = "default_key"
@@ -52,7 +53,7 @@ public class MSTextField: UITextField, UITextFieldDelegate {
     public var isOptional: Bool = false
     
     @IBInspectable
-    private var _type: Int = 1 {
+    private var _type: Int = -1 {
         didSet {
             self.setupKeyboardByType()
             if self.isPicker {
@@ -215,8 +216,13 @@ public class MSTextField: UITextField, UITextFieldDelegate {
         guard let numberMask = self.numberMask else { return true }
         if string == "" {
             if var text = textField.text,
-                text.count > 1 {
+                text.count > 0 {
                 text.removeLast()
+                var last = text.last
+                while (!self.isNumber(last ?? "1")) {
+                    text.removeLast()
+                    last = text.last
+                }
                 self.text = text
             }
             return false

@@ -8,6 +8,32 @@
 import UIKit
 
 
+public extension Array {
+    
+    
+    public mutating func addField(field: Any, maxLength: Int) {
+        if let field = field as? MSTextView {
+            self.insertField(field: field, index: field.index, maxLength: maxLength)
+        }
+        if let field = field as? MSTextField {
+            self.insertField(field: field, index: field.index, maxLength: maxLength)
+        }
+    }
+    
+    private mutating func insertField(field: Any, index: Int, maxLength: Int) {
+        if self.count == maxLength {
+            self.remove(at: index)
+        }
+        if index <= self.count - 1 {
+            self.insert(field as! Element, at: index)
+        } else {
+            self.append(field as! Element)
+        }
+    }
+    
+    
+}
+
 public extension Dictionary {
     
     public func removeNilValues() -> [String: Any] {

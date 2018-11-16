@@ -24,7 +24,7 @@ public class MSTextView: UITextView, UITextViewDelegate {
     
     public var ms_delegate: MSTextViewDelegate?
     
-    var index: Int = 0
+    public var index: Int = 0
     
     public override var text: String! {
         didSet {

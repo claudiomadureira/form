@@ -10,7 +10,7 @@ import UIKit
 
 import MSForm
 
-class ViewController: UIViewController, MSFormDelegate {
+class ViewController: UIViewController, MSFormDelegate, MSFormFieldDelegate {
     
     @IBOutlet var fields: [Any]!
     
@@ -23,11 +23,12 @@ class ViewController: UIViewController, MSFormDelegate {
         sexField?.stringPickerData = ["Homem", "Mulher"]
         let form = MSForm(fields: self.fields, passwordLength: 6)
         form.language = .en
+        form.fieldDelegate = self
         form.delegate = self
         self.form = form
     }
     
-    // MARK: - MSFormDelegate
+    // MARK: - MSFormFieldDelegate
     
     func fieldDidChange(_ form: MSForm, at index: Int) {
         // ...
@@ -48,6 +49,8 @@ class ViewController: UIViewController, MSFormDelegate {
     func fieldDidBeginEditing(_ form: MSForm, at index: Int) {
         // ...
     }
+    
+    // MARK: - MSFormDelegate
     
     func completionSuccess(_ form: MSForm, data: [String : String?]) {
         print("Data: ", data.removeNilValues())
