@@ -10,24 +10,23 @@ import UIKit
 
 public extension Array {
     
-    
-    public mutating func addField(field: Any, maxLength: Int) {
-        if let field = field as? MSTextView {
-            self.insertField(field: field, index: field.index, maxLength: maxLength)
+    public mutating func addField(field: Element, maxLength: Int) {
+        if let _field = field as? MSTextView {
+            self.insertField(field: field, index: _field.index, maxLength: maxLength)
         }
-        if let field = field as? MSTextField {
-            self.insertField(field: field, index: field.index, maxLength: maxLength)
+        if let _field = field as? MSTextField {
+            self.insertField(field: field, index: _field.index, maxLength: maxLength)
         }
     }
     
-    private mutating func insertField(field: Any, index: Int, maxLength: Int) {
+    private mutating func insertField(field: Element, index: Int, maxLength: Int) {
         if self.count == maxLength {
             self.remove(at: index)
         }
         if index <= self.count - 1 {
-            self.insert(field as! Element, at: index)
+            self.insert(field, at: index)
         } else {
-            self.append(field as! Element)
+            self.append(field)
         }
     }
     
@@ -39,11 +38,11 @@ public extension Dictionary {
     public func removeNilValues() -> [String: Any] {
         guard let selfDic = self as? [String: Any?] else { return [:] }
         var newDic: [String: Any] = [:]
-        for key in selfDic.keys {
-            if let value = selfDic[key] {
-                newDic[key] = value
+        selfDic.forEach({ key, value in
+            if let value = value {
+                newDic.updateValue(value, forKey: key)
             }
-        }
+        })
         return newDic
     }
 }

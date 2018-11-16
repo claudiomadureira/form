@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'MSForm'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of MSForm.'
+  s.summary          = 'MSForm is a library for those who need to build a form into their application in a simple way.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,25 +18,17 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  MSForm was developed by a student of Control and Automation Engineer that have been working with iOS applications for 2 years.
+  Feeling the necessity to have a form in all applications that he worked, this library was build for those who need a form into their application.
+  It's easy to setup and you can find out how to do it in the example.
                        DESC
 
   s.homepage         = 'https://github.com/Cláudio Madureira/MSForm'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Cláudio Madureira' => 'claudiomsilvaf@gmail.com' }
   s.source           = { :git => 'https://github.com/Cláudio Madureira/MSForm.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MSForm/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'MSForm' => ['MSForm/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
