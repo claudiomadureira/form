@@ -90,14 +90,6 @@ extension String {
 
 extension UIImage {
     
-    class func getFrom(nameResource: String, type: String) -> UIImage? {
-        guard let bundle = Bundle.main.path(forResource: nameResource, ofType: type) else { return nil }
-        let url = URL(fileURLWithPath: bundle)
-        guard let data = try? Data(contentsOf: url) else { return nil }
-        let image = UIImage(data: data)
-        return image
-    }
-    
     class func getFrom(customClass: AnyClass, nameResource: String, type: String) -> UIImage? {
         guard let bundle = Bundle(for: customClass).path(forResource: nameResource, ofType: type) else { return nil }
         let url = URL(fileURLWithPath: bundle)
