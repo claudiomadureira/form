@@ -135,7 +135,7 @@ public class MSTextView: UITextView, UITextViewDelegate {
                 if let attributedPlaceholder = self.attributedPlaceholder {
                     self.attributedText = attributedPlaceholder
                 } else {
-                    self.text = nil
+                    self.text = self.placeholder
                 }
                 return false
             }
