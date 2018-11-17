@@ -77,12 +77,18 @@ extension String {
         case "must be filled.": return "deve ser preenchido."
         case "digits or more.": return "dígitos ou mais"
         case "The password must have": return "A senha deve ter"
-        case "The passwords doesn't match.": return "As senhas nao combinam."
+        case "The passwords doesn't match.": return "As senhas não combinam."
         case "The number of field": return "O número do campo"
         case "must be filled correctly.": return "deve ser preenchido corretamente."
         case "Field not identified in form.": return "Campo não identificado dentro no formulário."
         default: return self
         }
+    }
+    
+    var isAnEmail: Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let range = self.range(of: emailRegEx, options: .regularExpression)
+        return range != nil
     }
     
 }
@@ -98,6 +104,8 @@ extension UIImage {
     }
     
 }
+
+
 
 
 

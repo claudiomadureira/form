@@ -91,6 +91,10 @@ public class MSTextView: UITextView, UITextViewDelegate {
         self.textColor = color.withAlphaComponent(isPlaceholder ? lightAlpha : 1)
     }
     
+    public func setValueFrom(data: MSFormData) {
+        self.text = data[key] ?? ""
+    }
+    
     // MARK: - UITextViewDelegate
     
     public func textViewDidChange(_ textView: UITextView) {

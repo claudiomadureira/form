@@ -10,7 +10,7 @@ import UIKit
 
 import MSForm
 
-class ViewController: UIViewController, MSFormDelegate, MSFormFieldDelegate {
+class FormViewController: UIViewController, MSFormDelegate, MSFormFieldDelegate {
     
     @IBOutlet var fields: [Any]!
     
@@ -18,11 +18,13 @@ class ViewController: UIViewController, MSFormDelegate, MSFormFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let sexField = fields.first as? MSTextField
         sexField?.setType(.stringPicker)
         sexField?.stringPickerData = ["Homem", "Mulher"]
-        let form = MSForm(fields: self.fields, passwordLength: 6)
-        form.language = .en
+        let form = MSForm()
+        form.fields = self.fields
+        form.passwordLength = 6
         form.fieldDelegate = self
         form.delegate = self
         self.form = form

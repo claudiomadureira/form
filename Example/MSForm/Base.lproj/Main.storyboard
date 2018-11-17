@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="18j-w9-wTG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Form View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MSForm_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="FormViewController" customModule="MSForm_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -128,24 +128,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmar Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5JI-pv-ueB" customClass="MSTextField" customModule="MSForm">
-                                                <rect key="frame" x="37.5" y="398.5" width="300" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="changeAutomatically" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="type">
-                                                        <integer key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="key" value="passwordConfirm"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="_type">
-                                                        <integer key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AE9-xr-CBR" customClass="MSTextView" customModule="MSForm">
-                                                <rect key="frame" x="37.5" y="450" width="300" height="50"/>
+                                                <rect key="frame" x="37.5" y="393.5" width="300" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="3Ro-Qn-lNB"/>
@@ -163,26 +147,23 @@
                                             <constraint firstItem="efW-CZ-yYE" firstAttribute="top" secondItem="Zu0-mh-yt4" secondAttribute="bottom" constant="12.5" id="0al-c2-pMO"/>
                                             <constraint firstItem="70u-SC-v5t" firstAttribute="centerX" secondItem="JmA-EL-K8z" secondAttribute="centerX" id="15d-Ix-tgh"/>
                                             <constraint firstItem="Zu0-mh-yt4" firstAttribute="width" secondItem="efW-CZ-yYE" secondAttribute="width" id="6ya-fZ-ft2"/>
-                                            <constraint firstItem="5JI-pv-ueB" firstAttribute="top" secondItem="BZ6-vC-sIW" secondAttribute="bottom" constant="15" id="9rb-vU-zNN"/>
+                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="width" secondItem="BZ6-vC-sIW" secondAttribute="width" id="9xS-y0-nqY"/>
                                             <constraint firstItem="70u-SC-v5t" firstAttribute="width" secondItem="JmA-EL-K8z" secondAttribute="width" multiplier="0.8" id="BNI-Yy-hA4"/>
-                                            <constraint firstItem="5JI-pv-ueB" firstAttribute="centerX" secondItem="BZ6-vC-sIW" secondAttribute="centerX" id="Cl3-Zl-YRU"/>
                                             <constraint firstItem="La7-RQ-0dM" firstAttribute="top" secondItem="gTH-Cr-Hub" secondAttribute="bottom" constant="15" id="DKu-S8-7TB"/>
                                             <constraint firstItem="70u-SC-v5t" firstAttribute="top" secondItem="efW-CZ-yYE" secondAttribute="bottom" constant="15" id="EGA-81-7RJ"/>
                                             <constraint firstItem="gTH-Cr-Hub" firstAttribute="width" secondItem="70u-SC-v5t" secondAttribute="width" id="H1i-22-XZY"/>
+                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="top" secondItem="BZ6-vC-sIW" secondAttribute="bottom" constant="10" id="Hhi-lo-JB8"/>
                                             <constraint firstItem="efW-CZ-yYE" firstAttribute="width" secondItem="70u-SC-v5t" secondAttribute="width" id="HvT-bf-UCT"/>
                                             <constraint firstItem="BZ6-vC-sIW" firstAttribute="width" secondItem="gTH-Cr-Hub" secondAttribute="width" id="IwZ-Tf-oUJ"/>
                                             <constraint firstItem="gTH-Cr-Hub" firstAttribute="top" secondItem="70u-SC-v5t" secondAttribute="bottom" constant="15" id="Paq-ms-Qmt"/>
-                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="width" secondItem="5JI-pv-ueB" secondAttribute="width" id="QPR-m2-d0P"/>
                                             <constraint firstItem="gTH-Cr-Hub" firstAttribute="centerX" secondItem="70u-SC-v5t" secondAttribute="centerX" id="UWc-uX-nPe"/>
                                             <constraint firstItem="BZ6-vC-sIW" firstAttribute="top" secondItem="La7-RQ-0dM" secondAttribute="bottom" constant="15" id="VOh-S4-uPr"/>
                                             <constraint firstItem="La7-RQ-0dM" firstAttribute="width" secondItem="gTH-Cr-Hub" secondAttribute="width" id="VXb-ke-1j6"/>
                                             <constraint firstItem="efW-CZ-yYE" firstAttribute="centerX" secondItem="70u-SC-v5t" secondAttribute="centerX" id="XvI-wR-KYK"/>
-                                            <constraint firstItem="5JI-pv-ueB" firstAttribute="width" secondItem="BZ6-vC-sIW" secondAttribute="width" id="ZxR-OY-NIT"/>
+                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="centerX" secondItem="BZ6-vC-sIW" secondAttribute="centerX" id="a8Y-NZ-TWu"/>
                                             <constraint firstItem="Zu0-mh-yt4" firstAttribute="centerX" secondItem="efW-CZ-yYE" secondAttribute="centerX" id="bI4-DJ-2eu"/>
-                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="centerX" secondItem="5JI-pv-ueB" secondAttribute="centerX" id="dHj-Du-Jl1"/>
                                             <constraint firstItem="70u-SC-v5t" firstAttribute="centerY" secondItem="JmA-EL-K8z" secondAttribute="centerY" multiplier="0.7" id="fyg-vl-1fN"/>
                                             <constraint firstItem="BZ6-vC-sIW" firstAttribute="centerX" secondItem="gTH-Cr-Hub" secondAttribute="centerX" id="kK1-C4-A4v"/>
-                                            <constraint firstItem="AE9-xr-CBR" firstAttribute="top" secondItem="5JI-pv-ueB" secondAttribute="bottom" constant="21.5" id="vhY-Vr-lL0"/>
                                             <constraint firstItem="La7-RQ-0dM" firstAttribute="centerX" secondItem="gTH-Cr-Hub" secondAttribute="centerX" id="zat-SS-NAl"/>
                                         </constraints>
                                     </view>
@@ -205,6 +186,15 @@
                             <constraint firstItem="JmA-EL-K8z" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="n0I-4W-JGz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="fields" destination="Zu0-mh-yt4" collectionClass="NSMutableArray" id="9TT-4P-Ewk"/>
+                        <outletCollection property="fields" destination="efW-CZ-yYE" collectionClass="NSMutableArray" id="lv3-XS-5Vd"/>
+                        <outletCollection property="fields" destination="70u-SC-v5t" collectionClass="NSMutableArray" id="li0-yS-aDt"/>
+                        <outletCollection property="fields" destination="gTH-Cr-Hub" collectionClass="NSMutableArray" id="wLN-xh-8r4"/>
+                        <outletCollection property="fields" destination="La7-RQ-0dM" collectionClass="NSMutableArray" id="jwp-fY-a08"/>
+                        <outletCollection property="fields" destination="BZ6-vC-sIW" collectionClass="NSMutableArray" id="aM8-jc-rgr"/>
+                        <outletCollection property="fields" destination="AE9-xr-CBR" collectionClass="NSMutableArray" id="KYj-Wh-Dlh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

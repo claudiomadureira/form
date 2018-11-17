@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol MSFormDelegate {
-    func completionSuccess(_ form: MSForm, data: [String: String?])
+    func completionSuccess(_ form: MSForm, data: MSFormData)
     func completionFailure(_ form: MSForm, error: MSError)
 }
 
@@ -21,7 +21,7 @@ public protocol MSFormDelegate {
 }
 
 public enum MSFormResponse<Value> {
-    case success([String: String?])
+    case success(MSFormData)
     case failure(MSError)
 }
 
@@ -30,81 +30,131 @@ public enum MSLanguageType {
     case en
 }
 
+
+typealias MSFormInternalData = [String: (MSTextFieldType, Bool, String?, String?, String?)]
+
+public typealias MSFormData = [String: String?]
+
 public class MSForm: NSObject {
     
     // MARK: - Properties
     
     public var language: MSLanguageType = .pt
-    public var fields: [Any] = []
     public var passwordLength: Int?
     public var shoudlUseDoneAutomatically: Bool = true
     public var fieldDelegate: MSFormFieldDelegate?
     public var delegate: MSFormDelegate?
+    public var data: MSFormData = [:]
     
-    // MARK: - Init
+    var internalData: MSFormInternalData = [:]
     
-    public required init(fields: [Any], passwordLength: Int? = nil) {
-        super.init()
-        self.fields = fields
-        self.passwordLength = passwordLength
-        for (i, field) in fields.enumerated() {
-            let isLast = i == fields.count - 1
-            if let field = field as? MSTextField {
-                field.index = i
-                field.ms_delegate = self
-                field.returnKeyType = isLast ? .done : .next
-            }
-            if let field = field as? MSTextView {
-                field.index = i
-                field.ms_delegate = self
-                field.returnKeyType = isLast ? .done : .next
+    public var fields: [Any] = [] {
+        didSet {
+            for (i, field) in fields.enumerated() {
+                let isLast = i == fields.count - 1
+                if let field = field as? MSTextField {
+                    field.index = i
+                    field.ms_delegate = self
+                    field.returnKeyType = isLast ? .done : .next
+                    if field.isPicker {
+                        self.setData(field)
+                    }
+                }
+                if let field = field as? MSTextView {
+                    field.index = i
+                    field.ms_delegate = self
+                    field.returnKeyType = isLast ? .done : .next
+                }
             }
         }
     }
     
+    // MARK: - Init
+    
+    convenience init(fields: [Any], passwordLength: Int? = nil) {
+        self.init()
+        self.fields = fields
+        self.passwordLength = passwordLength
+        
+    }
+    
     // MARK: - Local Functions
     
-    func perfom(completion: ((MSFormResponse<Any>) -> Void)? = nil) {
-        if let fields = self.fields as? [MSTextField] {
-            MSForm.handle(fields: fields, passwordLength: passwordLength, forLanguage: self.language, completion: { response in
-                guard let delegate = self.delegate else {
-                    completion?(response)
-                    return
-                }
-                switch response {
-                case .success(let data):
-                    delegate.completionSuccess(self, data: data)
-                case .failure(let error):
-                    delegate.completionFailure(self, error: error)
-                }
-            })
-        } else if let fields = self.fields as? [MSTextView] {
-            MSForm.handle(fields: fields, forLanguage: self.language, completion: { response in
-                guard let delegate = self.delegate else {
-                    completion?(response)
-                    return
-                }
-                switch response {
-                case .success(let data):
-                    delegate.completionSuccess(self, data: data)
-                case .failure(let error):
-                    delegate.completionFailure(self, error: error)
-                }
-            })
-        } else {
-            MSForm.handle(fields: fields, passwordLength: passwordLength, forLanguage: self.language, completion: { response in
-                guard let delegate = self.delegate else {
-                    completion?(response)
-                    return
-                }
-                switch response {
-                case .success(let data):
-                    delegate.completionSuccess(self, data: data)
-                case .failure(let error):
-                    delegate.completionFailure(self, error: error)
-                }
-            })
+    private func setData(_ field: Any) {
+        if let field = field as? MSTextField {
+            self.internalData[field.key] = (field.type, field.isOptional, field.text, field.numberMask, field.placeholder)
+            self.data[field.key] = field.text
+        } else if let field = field as? MSTextView {
+            self.internalData[field.key] = (.standard, field.isOptional, field.text, nil, field.placeholder)
+            self.data[field.key] = field.text
         }
+    }
+    
+    
+    func perfom(completion: ((MSFormResponse<Any>) -> Void)? = nil) {
+        var inputTexts: MSFormData = [:]
+        let language = self.language
+        var password: String?
+        var passwordConfirm: String?
+        var hasPasswordConfirm: Bool = false
+        let method: ((MSFormResponse<Any>) -> Void) = { response in
+            guard let delegate = self.delegate else {
+                completion?(response)
+                return
+            }
+            switch response {
+            case .success(let data):
+                delegate.completionSuccess(self, data: data)
+            case .failure(let error):
+                delegate.completionFailure(self, error: error)
+            }
+        }
+        for key in self.internalData.keys {
+            let (type, isOptional, _text, _mask, placeholder) = self.internalData[key]!
+            let text = _text ?? ""
+            let mask = _mask ?? ""
+            if type != .passwordConfirm {
+                inputTexts.updateValue(text, forKey: key)
+            }
+            if !(isOptional && (_text == nil || text.count == 0)) {
+                switch type {
+                case .email:
+                    if !text.isAnEmail {
+                        method(.failure(MSForm.getEmailError(language)))
+                        return
+                    }
+                case .number:
+                    if !(text.count == mask.count) {
+                        method(.failure(MSForm.getNumberError(text, placeholder, language)))
+                        return
+                    }
+                case .password,
+                     .passwordConfirm:
+                    let passwordCount = text.count
+                    if let passwordLength = passwordLength,
+                        passwordCount <= passwordLength {
+                        method(.failure(MSForm.getPasswordLengthError(passwordLength, language)))
+                        return
+                    }
+                    if type == .password {
+                        password = text
+                    } else {
+                        hasPasswordConfirm = true
+                        passwordConfirm = text
+                    }
+                default:
+                    if !(text.count > 0) {
+                        method(.failure(MSForm.getEmptyError(placeholder, language)))
+                        return
+                    }
+                }
+            }
+        }
+        if hasPasswordConfirm && password != passwordConfirm {
+            method(.failure(MSForm.getPasswordMatchError(language)))
+            return
+        }
+        method(.success(inputTexts))
     }
     
     // MARK: - Class Functions
@@ -113,7 +163,8 @@ public class MSForm: NSObject {
                              passwordLength: Int? = nil,
                              forLanguage language: MSLanguageType = .pt,
                              completion: (MSFormResponse<Any>) -> Void) {
-        var inputTexts: [String: String?] = [:]
+        
+        var inputTexts: MSFormData = [:]
         var password: String?
         for field in fields {
             if field.type != .passwordConfirm {
@@ -123,48 +174,30 @@ public class MSForm: NSObject {
                 switch field.type {
                 case .email:
                     if !field.isTextAnEmail {
-                        let error = MSError(code: 1,
-                                            localizedDescription: "Invalid email.".localized(language))
-                        completion(.failure(error))
+                        completion(.failure(MSForm.getEmailError(language)))
                         return
                     }
                 case .number:
                     if !(field.text?.count == field.numberMask?.count) {
-                        let message: String
-                        if field.text == nil || field.text == "" {
-                            message = "The field".localized(language) + " '\(field.placeholder ?? "Field without placeholder")' " + "must be filled.".localized(language)
-                        } else {
-                            message = "The number of field".localized(language) +
-                                " '\(field.placeholder ?? "Field without placeholder")' " +
-                                "must be filled correctly.".localized(language)
-                        }
-                        let error = MSError(code: 2, localizedDescription: message)
-                        completion(.failure(error))
+                        completion(.failure(MSForm.getNumberError(field.text, field.placeholder, language)))
                         return
                     }
                 case .password:
-                    let passwordCount = field.text?.count
-                    if passwordCount != nil,
-                        passwordCount == passwordLength {
-                        let message = "The password must have".localized(language) + " \(passwordLength!) " + "or more.".localized(language)
-                        let error = MSError(code: 3, localizedDescription: message)
-                        completion(.failure(error))
+                    let passwordCount = field.text?.count ?? 0
+                    if let passwordLength = passwordLength,
+                        passwordCount <= passwordLength {
+                        completion(.failure(MSForm.getPasswordLengthError(passwordLength, language)))
                         return
                     }
-                    password = field.text
+                    password = field.text ?? ""
                 case .passwordConfirm:
                     if password != field.text {
-                        let error = MSError(code: 4, localizedDescription: "The passwords doesn't match.".localized(language))
-                        completion(.failure(error))
+                        completion(.failure(MSForm.getPasswordMatchError(language)))
                         return
                     }
                 default:
                     if !(field.text?.count ?? 0 > 0) {
-                        let message = "The field".localized(language) +
-                            " '\(field.placeholder ?? "Field without placeholder")' " +
-                            "must be filled.".localized(language)
-                        let error = MSError(code: 5, localizedDescription: message)
-                        completion(.failure(error))
+                        completion(.failure(MSForm.getEmptyError(field.placeholder, language)))
                         return
                     }
                 }
@@ -176,7 +209,7 @@ public class MSForm: NSObject {
     public class func handle(fields: [MSTextView],
                              forLanguage language: MSLanguageType = .pt,
                              completion: (MSFormResponse<Any>) -> Void) {
-        var inputTexts: [String: String?] = [:]
+        var inputTexts: MSFormData = [:]
         for field in fields {
             inputTexts.updateValue(field.text, forKey: field.key)
             if !(field.isOptional && (field.text == nil || field.text?.count == 0)) {
@@ -197,7 +230,7 @@ public class MSForm: NSObject {
                              passwordLength: Int? = nil,
                              forLanguage language: MSLanguageType = .pt,
                              completion: (MSFormResponse<Any>) -> Void) {
-        var inputTexts: [String: String?] = [:]
+        var inputTexts: MSFormData = [:]
         var password: String?
         for field in fields {
             if let field = field as? MSTextField {
@@ -208,48 +241,30 @@ public class MSForm: NSObject {
                     switch field.type {
                     case .email:
                         if !field.isTextAnEmail {
-                            let error = MSError(code: 1,
-                                                localizedDescription: "Invalid email.".localized(language))
-                            completion(.failure(error))
+                            completion(.failure(MSForm.getEmailError(language)))
                             return
                         }
                     case .number:
                         if !(field.text?.count == field.numberMask?.count) {
-                            let message: String
-                            if field.text == nil || field.text == "" {
-                                message = "The field".localized(language) + " '\(field.placeholder ?? "Field without placeholder")' " + "must be filled.".localized(language)
-                            } else {
-                                message = "The number of field".localized(language) +
-                                    " '\(field.placeholder ?? "Field without placeholder")' " +
-                                    "must be filled correctly.".localized(language)
-                            }
-                            let error = MSError(code: 2, localizedDescription: message)
-                            completion(.failure(error))
+                            completion(.failure(MSForm.getNumberError(field.text, field.placeholder, language)))
                             return
                         }
                     case .password:
-                        let passwordCount = field.text?.count
-                        if passwordCount != nil,
-                            passwordCount == passwordLength {
-                            let message = "The password must have".localized(language) + " \(passwordLength!) " + "or more.".localized(language)
-                            let error = MSError(code: 3, localizedDescription: message)
-                            completion(.failure(error))
+                        let passwordCount = field.text?.count ?? 0
+                        if let passwordLength = passwordLength,
+                            passwordCount <= passwordLength {
+                            completion(.failure(MSForm.getPasswordLengthError(passwordLength, language)))
                             return
                         }
                         password = field.text
                     case .passwordConfirm:
                         if password != field.text {
-                            let error = MSError(code: 4, localizedDescription: "The passwords doesn't match.".localized(language))
-                            completion(.failure(error))
+                            completion(.failure(MSForm.getPasswordMatchError(language)))
                             return
                         }
                     default:
                         if !(field.text?.count ?? 0 > 0) {
-                            let message = "The field".localized(language) +
-                                " '\(field.placeholder ?? "Field without placeholder")' " +
-                                "must be filled.".localized(language)
-                            let error = MSError(code: 5, localizedDescription: message)
-                            completion(.failure(error))
+                            completion(.failure(MSForm.getEmptyError(field.placeholder, language)))
                             return
                         }
                     }
@@ -274,6 +289,42 @@ public class MSForm: NSObject {
         }
         completion(.success(inputTexts))
     }
+    
+    class func getEmailError(_ language: MSLanguageType) -> MSError {
+        return MSError(code: 1,
+                       localizedDescription: "Invalid email.".localized(language))
+    }
+    
+    class func getEmptyError(_ placeholder: String?, _ language: MSLanguageType) -> MSError {
+        let message = "The field".localized(language) +
+            " '\(placeholder ?? "Field without placeholder")' " +
+            "must be filled.".localized(language)
+        return MSError(code: 5, localizedDescription: message)
+    }
+    
+    class func getPasswordMatchError(_ language: MSLanguageType) -> MSError {
+        return MSError(code: 4,
+                       localizedDescription: "The passwords doesn't match.".localized(language))
+    }
+    
+    class func getPasswordLengthError(_ passwordLength: Int, _ language: MSLanguageType) -> MSError {
+        let message = "The password must have".localized(language) + " \(passwordLength) " + "digits or more.".localized(language)
+        return MSError(code: 3, localizedDescription: message)
+    }
+    
+    class func getNumberError(_ text: String?, _ placeholder: String?, _ language: MSLanguageType) -> MSError {
+        let message: String
+        if text == nil || text == "" {
+            message = "The field".localized(language)
+                + " '\(placeholder ?? "Field without placeholder")' "
+                + "must be filled.".localized(language)
+        } else {
+            message = "The number of field".localized(language) +
+                " '\(placeholder ?? "Field without placeholder")' " +
+                "must be filled correctly.".localized(language)
+        }
+        return MSError(code: 2, localizedDescription: message)
+    }
 
 }
 
@@ -282,6 +333,7 @@ public class MSForm: NSObject {
 extension MSForm: MSTextFieldDelegate {
 
     public func textFieldDidChange(_ textField: MSTextField) {
+        self.setData(textField)
         self.fieldDelegate?.fieldDidChange(self, at: textField.index)
     }
     
@@ -334,6 +386,7 @@ extension MSForm: MSTextFieldDelegate {
 extension MSForm: MSTextViewDelegate {
     
     public func textViewDidChange(_ textView: MSTextView) {
+        self.setData(textView)
         self.fieldDelegate?.fieldDidChange(self, at: textView.index)
     }
     

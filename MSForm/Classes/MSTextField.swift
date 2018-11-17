@@ -91,7 +91,7 @@ public class MSTextField: UITextField, UITextFieldDelegate {
         return .standard
     }
     
-    private var isPicker: Bool {
+    var isPicker: Bool {
         let type = self.type
         return type == .datePicker || type == .stringPicker
     }
@@ -99,10 +99,7 @@ public class MSTextField: UITextField, UITextFieldDelegate {
     public var ms_delegate: MSTextFieldDelegate?
     
     public var isTextAnEmail: Bool {
-        guard let string = self.text else { return false }
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let range = string.range(of: emailRegEx, options: .regularExpression)
-        return range != nil
+        return self.text?.isAnEmail ?? false
     }
     
     public override func draw(_ rect: CGRect) {
@@ -130,6 +127,14 @@ public class MSTextField: UITextField, UITextFieldDelegate {
     
     public func setType(_ type: MSTextFieldType) {
         self._type = type.rawValue
+    }
+    
+    public func setValueFrom(data: MSFormData) {
+        if let text = data[key] {
+            self.text = text
+        } else {
+            self.text = nil
+        }
     }
 
     private func setupKeyboardByType() {
