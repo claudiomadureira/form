@@ -92,7 +92,8 @@ public class MSTextView: UITextView, UITextViewDelegate {
     }
     
     public func setValueFrom(data: MSFormData) {
-        self.text = data[key] ?? ""
+        self.text = data[key] ?? self.placeholder
+        self.setTextColor()
     }
     
     // MARK: - UITextViewDelegate

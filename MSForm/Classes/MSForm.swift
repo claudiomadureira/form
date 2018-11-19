@@ -86,7 +86,7 @@ public class MSForm: NSObject {
     
     // MARK: - Local Functions
     
-    private func setData(_ field: Any) {
+    fileprivate func setData(_ field: Any) {
         if let field = field as? MSTextField {
             let data = InternalData(index: field.index,
                                     type: field.type,
