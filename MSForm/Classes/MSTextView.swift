@@ -80,8 +80,10 @@ public class MSTextView: UITextView, UITextViewDelegate {
     
     func setTextColor() {
         let color: UIColor
+		
         if let attributedPlaceholder = self.attributedPlaceholder,
-            let col = attributedPlaceholder.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor {
+			let range = NSRangePointer.init(bitPattern: 0),
+            let col = attributedPlaceholder.attribute(.foregroundColor, at: 0, effectiveRange: range) as? UIColor {
             color = col
         } else {
             color = self.textColor ?? .black

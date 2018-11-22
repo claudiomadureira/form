@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Bsed on the necessity to have a form in basically all applications, this library was built for those who need a form. It's easy to setup and you can find out how to do it in the example.
+Based on the necessity to have a form in basically all applications, this library was built for those who need a form. It's easy to setup and you can find out how to do it in the example.
                        DESC
 
   s.homepage         = 'https://github.com/claudiomadureira/MSForm'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Cláudio Madureira' => 'claudiomsilvaf@gmail.com' }
   s.source           = { :git => 'https://github.com/claudiomadureira/MSForm.git', :tag => s.version.to_s }
-
+  s.swift_version	 = '4.2'
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MSForm/Classes/**/*'

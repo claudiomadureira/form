@@ -18,7 +18,6 @@
 		BCAC940D59F73F517FC6F751F974AD34 /* MSForm-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 464B1C9D402CA3733262C1BC54BB6D27 /* MSForm-dummy.m */; };
 		C219E18D9EDCC17FC14D98235CBEEDB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		C79BC650FDF30A3A5583C22CA7D007A9 /* Pods-MSForm_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 121961FC2574226849CFE552378A74FD /* Pods-MSForm_Tests-dummy.m */; };
-		D049D2B550DDCA02873BACE0EA863C90 /* Pods-MSForm_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51D1632868E81B263698C9E72985CD73 /* Pods-MSForm_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D64BC051D55C121587AC85FB28B10B19 /* Pods-MSForm_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AA1AB8FAC0634D7A3764527089BAD8 /* Pods-MSForm_Example-dummy.m */; };
 		D79BC5884169D496C4744F53C9B8ADFF /* Pods-MSForm_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A21E104CACF25AE1EFA493888853D335 /* Pods-MSForm_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9F41CE4652A21EBEE47E5872631A432 /* MSForm-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6FA9797633D29FFD4D78A58A097F4E /* MSForm-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,7 +58,6 @@
 		38DF82919DA65F52DD9CB9F47FB9C2F7 /* Pods-MSForm_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MSForm_Tests.modulemap"; sourceTree = "<group>"; };
 		464B1C9D402CA3733262C1BC54BB6D27 /* MSForm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MSForm-dummy.m"; sourceTree = "<group>"; };
 		4AF07DBD0C97444FA8B1857C5D7CABE6 /* Pods-MSForm_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MSForm_Example-frameworks.sh"; sourceTree = "<group>"; };
-		51D1632868E81B263698C9E72985CD73 /* Pods-MSForm_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MSForm_Tests-umbrella.h"; sourceTree = "<group>"; };
 		559D951BE5CD0C7AA060E368312A9AA3 /* Pods-MSForm_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MSForm_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5BB456D885CD2664A9111296F2C84359 /* Pods_MSForm_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSForm_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +214,6 @@
 				121961FC2574226849CFE552378A74FD /* Pods-MSForm_Tests-dummy.m */,
 				B6A6B0705CD4B69A92AF1BA45E6C06DE /* Pods-MSForm_Tests-frameworks.sh */,
 				0C41F8BF2A64B9F7BEB6DCF4D9FF3EC7 /* Pods-MSForm_Tests-resources.sh */,
-				51D1632868E81B263698C9E72985CD73 /* Pods-MSForm_Tests-umbrella.h */,
 				1D49083EC9CC9B989AB60C7B7AD22430 /* Pods-MSForm_Tests.debug.xcconfig */,
 				A899A7A8E387990245D288677245C662 /* Pods-MSForm_Tests.release.xcconfig */,
 			);
@@ -265,7 +262,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D049D2B550DDCA02873BACE0EA863C90 /* Pods-MSForm_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
